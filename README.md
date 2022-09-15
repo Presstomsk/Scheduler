@@ -1,19 +1,6 @@
 # SCHEDULER
 Библиотека планировщика выполнения задач.<br>
 Планировщик обеспечивает поочередный запуск задач, обмен сообщениями между ними, логирование выполнения каждой задачи.<br>
-
-## ДОКУМЕНТАЦИЯ: <br><br>
-### Class SchedulerFactory<br><br>
-
-<img src="https://github.com/Presstomsk/AviaTickets/blob/main/Scheduler/docfx_project/_site/api/DocFX/1.png" alt="drawing" width="800"/>
-<img src="https://github.com/Presstomsk/AviaTickets/blob/main/Scheduler/docfx_project/_site/api/DocFX/3.png" alt="drawing" width="800"/>
-<img src="https://github.com/Presstomsk/AviaTickets/blob/main/Scheduler/docfx_project/_site/api/DocFX/4.png" alt="drawing" width="800"/><br><br> 
- 
-### Interface IMessage<br><br>
-
-<img src="https://github.com/Presstomsk/AviaTickets/blob/main/Scheduler/docfx_project/_site/api/DocFX/5.png" alt="drawing" width="800"/>
-<img src="https://github.com/Presstomsk/AviaTickets/blob/main/Scheduler/docfx_project/_site/api/DocFX/6.png" alt="drawing" width="800"/>
-<img src="https://github.com/Presstomsk/AviaTickets/blob/main/Scheduler/docfx_project/_site/api/DocFX/7.png" alt="drawing" width="800"/><br><br>  
  
 ## ПРИМЕР ИСПОЛЬЗОВАНИЯ:<br><br> 
 
@@ -25,6 +12,18 @@
 <p>ISchedulerFactory scheduler = new SchedulerFactory(logger);</p>
 <p>public IMessage Some_Func_1(IMessage msg = default) {return msg;}</p>
 <p>var msg = scheduler.Create().Do(Some_Func_1).Do(Some_Func_2).Do(Some_Func_3).Start(Some_IMessage);</p><br>
+
+#### Формирование вложенного списка задач<br><br>
+
+<p>using Microsoft.Extensions.Logging;</p><br>
+
+<p>ILogger&lt;ISchedulerFactory> logger = default;</p>
+<p>ISchedulerFactory scheduler1 = new SchedulerFactory(logger).Create().Do(Some_Func_1).Do(Some_Func_2).Do(Some_Func_3);</p>
+<p>ISchedulerFactory scheduler2 = new SchedulerFactory(logger).Create().Do(Some_Func_4).Do(Some_Func_5).Do(Some_Func_6);</p>
+<p>......</p>				  
+<p>public IMessage Some_Func_1(IMessage msg = default) {return msg;}</p>
+<p>......</p>	
+<p>var msg = new SchedulerFactory(logger).Create().Do(scheduler1.Start).Do(scheduler2.Start).Do(scheduler3.Start).Start(Some_IMessage);</p><br>
 
 #### Формирование положительного сообщения<br><br>
 
@@ -46,7 +45,11 @@
 
 ## ЛОГИРОВАНИЕ ВНУТРИ ПЛАНИРОВЩИКА:<br><br>
 
-<img src="https://github.com/Presstomsk/AviaTickets/blob/main/Scheduler/docfx_project/_site/api/DocFX/8.png" alt="drawing" width="1300"/>
+2022-09-14 19:41:44.127 [INF] {"SourceContext":"Scheduler.ISchedulerFactory","client":"client"} [14.09.2022 19:41:44] PROCESS : CitiesDatabaseUpdateWorkflow, STEP[1] : GetUpdateDBDate, STATUS: DONE, Длительность операции : 00:00.39 
+
+2022-09-14 19:00:54.175 [INF] {"SourceContext":"Scheduler.ISchedulerFactory","client":"client"} [14.09.2022 19:00:54] PROCESS : InputDataValidationWorkflow, Validator : Start, STATUS: ERROR, Введите пункт отправления! 
+
+
 
 
 
