@@ -26,6 +26,18 @@
 <p>public IMessage Some_Func_1(IMessage msg = default) {return msg;}</p>
 <p>var msg = scheduler.Create().Do(Some_Func_1).Do(Some_Func_2).Do(Some_Func_3).Start(Some_IMessage);</p><br>
 
+#### Формирование вложенного списка задач<br><br>
+
+<p>using Microsoft.Extensions.Logging;</p><br>
+
+<p>ILogger&lt;ISchedulerFactory> logger = default;</p>
+<p>ISchedulerFactory scheduler1 = new SchedulerFactory(logger).Create().Do(Some_Func_1).Do(Some_Func_2).Do(Some_Func_3);</p>
+<p>ISchedulerFactory scheduler2 = new SchedulerFactory(logger).Create().Do(Some_Func_4).Do(Some_Func_5).Do(Some_Func_6);</p>
+<p>......</p>				  
+<p>public IMessage Some_Func_1(IMessage msg = default) {return msg;}</p>
+<p>......</p>	
+<p>var msg = new SchedulerFactory(logger).Create().Do(scheduler1.Start).Do(scheduler2.Start).Do(scheduler3.Start).Start(Some_IMessage);</p><br>
+
 #### Формирование положительного сообщения<br><br>
 
 <p>public class Message : IMessage</p><br>
