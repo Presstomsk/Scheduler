@@ -8,7 +8,7 @@
 
 <p>using Microsoft.Extensions.Logging;</p><br>
 
-<p>ILogger<ISchedulerFactory> logger = default;</p>
+<p>ILogger&lt;ISchedulerFactory> logger = default;</p>
 <p>ISchedulerFactory scheduler = new SchedulerFactory(logger);</p>
 <p>public IMessage Some_Func_1(IMessage msg = default) {return msg;}</p>
 <p>var msg = scheduler.Create().Do(Some_Func_1).Do(Some_Func_2).Do(Some_Func_3).Start(Some_IMessage);</p><br>
