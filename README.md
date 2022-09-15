@@ -45,7 +45,11 @@
 
 ## ЛОГИРОВАНИЕ ВНУТРИ ПЛАНИРОВЩИКА:<br><br>
 
-<img src="https://github.com/Presstomsk/AviaTickets/blob/main/Scheduler/docfx_project/_site/api/DocFX/8.png" alt="drawing" width="1300"/>
+2022-09-14 19:41:44.127 [INF] {"SourceContext":"Scheduler.ISchedulerFactory","client":"client"} [14.09.2022 19:41:44] PROCESS : CitiesDatabaseUpdateWorkflow, STEP[1] : GetUpdateDBDate, STATUS: DONE, Длительность операции : 00:00.39 
+
+2022-09-14 19:00:54.175 [INF] {"SourceContext":"Scheduler.ISchedulerFactory","client":"client"} [14.09.2022 19:00:54] PROCESS : InputDataValidationWorkflow, Validator : Start, STATUS: ERROR, Введите пункт отправления! 
+
+
 
 
 
