@@ -49,6 +49,12 @@
 
 2022-09-14 19:00:54.175 [INF] {"SourceContext":"Scheduler.ISchedulerFactory","client":"client"} [14.09.2022 19:00:54] PROCESS : InputDataValidationWorkflow, Validator : Start, STATUS: ERROR, Введите пункт отправления! 
 
+2022-09-15 11:56:58.644 [INF] {"SourceContext":"Scheduler.ISchedulerFactory","client":"client"} [15.09.2022 11:56:58] PROCESS : InputDataValidationWorkflow, STEP[1] : Start, STATUS: ERROR, System.DivideByZeroException: Attempted to divide by zero.
+   at Scheduler.SchedulerFactory.Start(IMessage msg) in C:\Users\user\source\repos\NewRepo4\AviaTickets\Scheduler\Scheduler\SchedulerFactory.cs:line 116
+   at AviaTickets.Processes.InputDataValidationWorkflow.Start() in C:\Users\user\source\repos\NewRepo4\AviaTickets\AviaTickets\Processes\InputDataValidationWorkflow.cs:line 48
+   at AviaTickets.Processes.InputDataValidationWorkflow.Start(IMessage msg) in C:\Users\user\source\repos\NewRepo4\AviaTickets\AviaTickets\Processes\InputDataValidationWorkflow.cs:line 43
+   at Scheduler.SchedulerFactory.Start(IMessage msg) in C:\Users\user\source\repos\NewRepo4\AviaTickets\Scheduler\Scheduler\SchedulerFactory.cs:line 87 
+
 
 
 
