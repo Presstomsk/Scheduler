@@ -1,19 +1,6 @@
 # SCHEDULER
 Библиотека планировщика выполнения задач.<br>
 Планировщик обеспечивает поочередный запуск задач, обмен сообщениями между ними, логирование выполнения каждой задачи.<br>
-
-## ДОКУМЕНТАЦИЯ: <br><br>
-### Class SchedulerFactory<br><br>
-
-<img src="https://github.com/Presstomsk/AviaTickets/blob/main/Scheduler/docfx_project/_site/api/DocFX/1.png" alt="drawing" width="800"/>
-<img src="https://github.com/Presstomsk/AviaTickets/blob/main/Scheduler/docfx_project/_site/api/DocFX/3.png" alt="drawing" width="800"/>
-<img src="https://github.com/Presstomsk/AviaTickets/blob/main/Scheduler/docfx_project/_site/api/DocFX/4.png" alt="drawing" width="800"/><br><br> 
- 
-### Interface IMessage<br><br>
-
-<img src="https://github.com/Presstomsk/AviaTickets/blob/main/Scheduler/docfx_project/_site/api/DocFX/5.png" alt="drawing" width="800"/>
-<img src="https://github.com/Presstomsk/AviaTickets/blob/main/Scheduler/docfx_project/_site/api/DocFX/6.png" alt="drawing" width="800"/>
-<img src="https://github.com/Presstomsk/AviaTickets/blob/main/Scheduler/docfx_project/_site/api/DocFX/7.png" alt="drawing" width="800"/><br><br>  
  
 ## ПРИМЕР ИСПОЛЬЗОВАНИЯ:<br><br> 
 
