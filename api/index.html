@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>РУКОВОДСТВО ПО ИСПОЛЬЗОВАНИЮ БИБЛИОТЕКИ</title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="PLACEHOLDER ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+              <article class="content wrap" id="_content" data-uid="">
+                  <h1 id="placeholder">РУКОВОДСТВО ПО ИСПОЛЬЗОВАНИЮ БИБЛИОТЕКИ</h1>                 
+
+                  <h4> Формирование списка задач</h4><br>
+
+                  <p>using Microsoft.Extensions.Logging;</p><br>
+
+                  <p>ILogger&lt;ISchedulerFactory> logger = default;</p>
+                  <p>ISchedulerFactory scheduler = new SchedulerFactory(logger);</p>
+                  <p>public IMessage Some_Func_1(IMessage msg = default) {return msg;}</p>
+                  <p>var msg = scheduler.Create().Do(Some_Func_1).Do(Some_Func_2).Do(Some_Func_3).Start(Some_IMessage);</p><br>
+				  
+				  <h4> Формирование вложенного списка задач</h4><br>
+
+                  <p>using Microsoft.Extensions.Logging;</p><br>
+
+                  <p>ILogger&lt;ISchedulerFactory> logger = default;</p>
+                  <p>ISchedulerFactory scheduler1 = new SchedulerFactory(logger).Create().Do(Some_Func_1).Do(Some_Func_2).Do(Some_Func_3);</p>
+				  <p>ISchedulerFactory scheduler2 = new SchedulerFactory(logger).Create().Do(Some_Func_4).Do(Some_Func_5).Do(Some_Func_6);</p>
+				  <p>......</p>				  
+                  <p>public IMessage Some_Func_1(IMessage msg = default) {return msg;}</p>
+				  <p>......</p>	
+                  <p>var msg = new SchedulerFactory(logger).Create().Do(scheduler1.Start).Do(scheduler2.Start).Do(scheduler3.Start).Start(Some_IMessage);</p><br>
+
+                  <h4> Передача данных из задачи в планировщик</h4><br>
+
+<p>public class Message : IMessage</p><br>
+<p>public class Data</p><br>
+
+<p>Data data = new Data{.....};</p>
+<p>IMessage msg = new Message().SendData<Data>(data);</p><br>
+
+<h4> Формирование сообщения об ошибке в планировщих с генерацией исключения</h4><br>
+
+<p>public class Message : IMessage</p><br>
+<p>IMessage msg = new Message().SendError(MsgType.Error, new Exception(error.ErrorMessage));</p><br>
+
+<h4> Формирование сообщения об ошибке в планировщих без генерации исключения</h4><br>
+
+<p>public class Message : IMessage</p><br>
+<p>IMessage msg = new Message().SendError(MsgType.LogError, new Exception(error.ErrorMessage));</p><br><br>
+
+<h4> Получение данных из планировщика</h4>
+<p>Data data = msg.GetData<Data>();</p><br><br>
+              </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
