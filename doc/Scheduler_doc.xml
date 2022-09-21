@@ -9,30 +9,112 @@
             Сообщение для обмена данными между задачами
             </summary>
         </member>
-        <member name="P:Scheduler.IMessage.IsSuccess">
+        <member name="P:Scheduler.IMessage.MsgType">
             <summary>
-            Положительный/отрицательный результат 
+            Тип сообщения 
             </summary>
         </member>
-        <member name="P:Scheduler.IMessage.Data">
+        <member name="P:Scheduler.IMessage.DataJson">
             <summary>
-            Передаваемые данные при положительном результате
+            Данные в формате JSON
             </summary>
         </member>
-        <member name="P:Scheduler.IMessage.DataType">
+        <member name="P:Scheduler.IMessage.DataObject">
             <summary>
-            Тип передаваемых данных при положительном результате
+            Данные в классе Object
             </summary>
         </member>
         <member name="P:Scheduler.IMessage.Error">
             <summary>
-            Ошибка при отрицательном результате
+            Ошибка 
             </summary>
         </member>
-        <member name="P:Scheduler.IMessage.Validate">
+        <member name="M:Scheduler.IMessage.SendError(Scheduler.MsgType,System.Exception)">
             <summary>
-            Указание планировщику записывать ошибку только в лог, без ее генерации в коде
+            Отправить сообщение об ошибке в планировщик
             </summary>
+            <param name="type">Тип сообщения</param>
+            <param name="ex">Ошибка</param>
+        </member>
+        <member name="M:Scheduler.IMessage.SendData``1(``0)">
+            <summary>
+            Отправка данных в планировщик
+            </summary>
+            <typeparam name="T">Тип передаваемых данных</typeparam>
+            <param name="data">Данные</param>        
+        </member>
+        <member name="M:Scheduler.IMessage.GetData``1">
+            <summary>
+            Получение данных из планировщика
+            </summary>
+            <typeparam name="T">Тип получаемых данных</typeparam>
+            <returns>Данные</returns>
+        </member>
+        <member name="T:Scheduler.MsgType">
+            <summary>
+            Тип сообщения
+            </summary>
+        </member>
+        <member name="F:Scheduler.MsgType.Data">
+            <summary>
+            Данные
+            </summary>
+        </member>
+        <member name="F:Scheduler.MsgType.Error">
+            <summary>
+            Ошибка с с генерацией исключения
+            </summary>
+        </member>
+        <member name="F:Scheduler.MsgType.LogError">
+            <summary>
+            Ошибка без генерации исключения
+            </summary>
+        </member>
+        <member name="T:Scheduler.Message.Message">
+            <summary>
+            Сообщение для обмена данными между задачами
+            </summary>
+        </member>
+        <member name="P:Scheduler.Message.Message.MsgType">
+            <summary>
+            Тип сообщения 
+            </summary>
+        </member>
+        <member name="P:Scheduler.Message.Message.DataJson">
+            <summary>
+            Данные в формате JSON
+            </summary>
+        </member>
+        <member name="P:Scheduler.Message.Message.DataObject">
+            <summary>
+            Данные в классе Object
+            </summary>
+        </member>
+        <member name="P:Scheduler.Message.Message.Error">
+            <summary>
+            Ошибка 
+            </summary>
+        </member>
+        <member name="M:Scheduler.Message.Message.SendError(Scheduler.MsgType,System.Exception)">
+            <summary>
+            Отправить сообщение об ошибке в планировщик
+            </summary>
+            <param name="type">Тип сообщения</param>
+            <param name="ex">Ошибка</param>
+        </member>
+        <member name="M:Scheduler.Message.Message.SendData``1(``0)">
+            <summary>
+            Отправка данных в планировщик
+            </summary>
+            <typeparam name="T">Тип передаваемых данных</typeparam>
+            <param name="data">Данные</param>        
+        </member>
+        <member name="M:Scheduler.Message.Message.GetData``1">
+            <summary>
+            Получение данных из планировщика
+            </summary>
+            <typeparam name="T">Тип получаемых данных</typeparam>
+            <returns>Данные</returns>
         </member>
         <member name="T:Scheduler.ISchedulerFactory">
             <summary>

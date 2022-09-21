@@ -131,16 +131,16 @@ namespace Scheduler
         private bool Validator(IMessage message)
         {          
             
-            if (message != default && !message.IsSuccess && message.Validate)
+            if (message != default && message.MsgType == MsgType.LogError)
             {
-                _logger?.LogInformation($"[{DateTime.Now}] PROCESS : {_process.Subprocesses.Peek().Operation.Method.DeclaringType.Name}, Validator : {_process.Subprocesses.Peek().SubprocessName}, STATUS: {STATUS.ERROR}, {message.Error.Message} ");
+                _logger?.LogInformation($"[{DateTime.Now}] PROCESS : {_process.Subprocesses.Peek().Operation.Method.DeclaringType.Name}, SchedulerValidator : {_process.Subprocesses.Peek().SubprocessName}, STATUS: {STATUS.ERROR}, {message.Error.Message} ");
                
                 _process.Subprocesses.Clear();
                 _process = default;
 
                 return true;
             }
-            else if (message != default && !message.IsSuccess && !message.Validate)
+            else if (message != default && message.MsgType == MsgType.Error)
             {
                 throw new Exception(message.Error?.Message);
             }

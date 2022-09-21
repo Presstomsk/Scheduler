@@ -8,24 +8,59 @@ namespace Scheduler
     public interface IMessage
     {   
         /// <summary>
-        /// Положительный/отрицательный результат 
+        /// Тип сообщения 
         /// </summary>
-        bool IsSuccess { get; set; }
+        MsgType MsgType { get; set; }
         /// <summary>
-        /// Передаваемые данные при положительном результате
+        /// Данные в формате JSON
         /// </summary>
-        object Data { get; set; }
+        string DataJson { get; set; }
         /// <summary>
-        /// Тип передаваемых данных при положительном результате
+        /// Данные в классе Object
         /// </summary>
-        Type DataType { get; set; }
+        object DataObject { get; set; }
         /// <summary>
-        /// Ошибка при отрицательном результате
+        /// Ошибка 
         /// </summary>
         Exception Error { get; set; }
         /// <summary>
-        /// Указание планировщику записывать ошибку только в лог, без ее генерации в коде
+        /// Отправить сообщение об ошибке в планировщик
         /// </summary>
-        bool Validate { get; set; }
+        /// <param name="type">Тип сообщения</param>
+        /// <param name="ex">Ошибка</param>
+        IMessage SendError(MsgType type, Exception ex);
+        /// <summary>
+        /// Отправка данных в планировщик
+        /// </summary>
+        /// <typeparam name="T">Тип передаваемых данных</typeparam>
+        /// <param name="data">Данные</param>        
+        IMessage SendData<T>(T data);
+        /// <summary>
+        /// Получение данных из планировщика
+        /// </summary>
+        /// <typeparam name="T">Тип получаемых данных</typeparam>
+        /// <returns>Данные</returns>
+        public T GetData<T>();
+
+    }
+
+    /// <summary>
+    /// Тип сообщения
+    /// </summary>
+    public enum MsgType
+    {
+        /// <summary>
+        /// Данные
+        /// </summary>
+        Data,
+        /// <summary>
+        /// Ошибка с с генерацией исключения
+        /// </summary>
+        Error,
+        /// <summary>
+        /// Ошибка без генерации исключения
+        /// </summary>
+        LogError
+
     }
 }
