@@ -1,0 +1,219 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Scheduler</name>
+    </assembly>
+    <members>
+        <member name="T:Scheduler.IMessage">
+            <summary>
+            Сообщение для обмена данными между задачами
+            </summary>
+        </member>
+        <member name="P:Scheduler.IMessage.MsgType">
+            <summary>
+            Тип сообщения 
+            </summary>
+        </member>
+        <member name="P:Scheduler.IMessage.DataJson">
+            <summary>
+            Данные в формате JSON
+            </summary>
+        </member>
+        <member name="P:Scheduler.IMessage.DataObject">
+            <summary>
+            Данные в классе Object
+            </summary>
+        </member>
+        <member name="P:Scheduler.IMessage.Error">
+            <summary>
+            Ошибка 
+            </summary>
+        </member>
+        <member name="M:Scheduler.IMessage.SendError(Scheduler.MsgType,System.Exception)">
+            <summary>
+            Отправить сообщение об ошибке в планировщик
+            </summary>
+            <param name="type">Тип сообщения</param>
+            <param name="ex">Ошибка</param>
+        </member>
+        <member name="M:Scheduler.IMessage.SendData``1(``0)">
+            <summary>
+            Отправка данных в планировщик
+            </summary>
+            <typeparam name="T">Тип передаваемых данных</typeparam>
+            <param name="data">Данные</param>        
+        </member>
+        <member name="M:Scheduler.IMessage.GetData``1">
+            <summary>
+            Получение данных из планировщика
+            </summary>
+            <typeparam name="T">Тип получаемых данных</typeparam>
+            <returns>Данные</returns>
+        </member>
+        <member name="T:Scheduler.MsgType">
+            <summary>
+            Тип сообщения
+            </summary>
+        </member>
+        <member name="F:Scheduler.MsgType.Data">
+            <summary>
+            Данные
+            </summary>
+        </member>
+        <member name="F:Scheduler.MsgType.Error">
+            <summary>
+            Ошибка с с генерацией исключения
+            </summary>
+        </member>
+        <member name="F:Scheduler.MsgType.LogError">
+            <summary>
+            Ошибка без генерации исключения
+            </summary>
+        </member>
+        <member name="T:Scheduler.Message.Message">
+            <summary>
+            Сообщение для обмена данными между задачами
+            </summary>
+        </member>
+        <member name="P:Scheduler.Message.Message.MsgType">
+            <summary>
+            Тип сообщения 
+            </summary>
+        </member>
+        <member name="P:Scheduler.Message.Message.DataJson">
+            <summary>
+            Данные в формате JSON
+            </summary>
+        </member>
+        <member name="P:Scheduler.Message.Message.DataObject">
+            <summary>
+            Данные в классе Object
+            </summary>
+        </member>
+        <member name="P:Scheduler.Message.Message.Error">
+            <summary>
+            Ошибка 
+            </summary>
+        </member>
+        <member name="M:Scheduler.Message.Message.SendError(Scheduler.MsgType,System.Exception)">
+            <summary>
+            Отправить сообщение об ошибке в планировщик
+            </summary>
+            <param name="type">Тип сообщения</param>
+            <param name="ex">Ошибка</param>
+        </member>
+        <member name="M:Scheduler.Message.Message.SendData``1(``0)">
+            <summary>
+            Отправка данных в планировщик
+            </summary>
+            <typeparam name="T">Тип передаваемых данных</typeparam>
+            <param name="data">Данные</param>        
+        </member>
+        <member name="M:Scheduler.Message.Message.GetData``1">
+            <summary>
+            Получение данных из планировщика
+            </summary>
+            <typeparam name="T">Тип получаемых данных</typeparam>
+            <returns>Данные</returns>
+        </member>
+        <member name="T:Scheduler.ISchedulerFactory">
+            <summary>
+            Планировщик заданий
+            </summary>
+        </member>
+        <member name="M:Scheduler.ISchedulerFactory.Create">
+            <summary>
+            Создание списка задач
+            </summary>
+            <returns>Текущий планировщик заданий</returns>
+        </member>
+        <member name="M:Scheduler.ISchedulerFactory.Do(System.Func{Scheduler.IMessage,Scheduler.IMessage})">
+            <summary>
+            Добавление задачи в планировщик (список задач)
+            </summary>
+            <param name="subprocess">Задача (должна принимать и возвращать IMessage)</param>
+            <returns>Текущий планировщик заданий</returns>
+        </member>
+        <member name="M:Scheduler.ISchedulerFactory.Start(Scheduler.IMessage)">
+            <summary>
+            Запуск выполнения очереди задач
+            </summary>
+            <param name="msg">Сообщение с данными для первой задачи планировщика</param>
+            <returns>Сообщение с данными от последнего элемента планировщика</returns>
+        </member>
+        <member name="T:Scheduler.SchedulerFactory">
+            <summary>
+            Планировщик заданий
+            </summary>
+        </member>
+        <member name="M:Scheduler.SchedulerFactory.#ctor(Microsoft.Extensions.Logging.ILogger{Scheduler.ISchedulerFactory})">
+            <summary>
+            Конструктор планировщика
+            </summary>
+            <param name="logger">Логгер</param>
+        </member>
+        <member name="M:Scheduler.SchedulerFactory.Create">
+            <summary>
+            Создание списка задач
+            </summary>
+            <returns>Текущий планировщик заданий</returns>
+        </member>
+        <member name="M:Scheduler.SchedulerFactory.Do(System.Func{Scheduler.IMessage,Scheduler.IMessage})">
+            <summary>
+            Добавление задачи в планировщик (список задач)
+            </summary>
+            <param name="subprocess">Задача (должна принимать и возвращать IMessage)</param>
+            <returns>Текущий планировщик заданий</returns>
+        </member>
+        <member name="M:Scheduler.SchedulerFactory.Start(Scheduler.IMessage)">
+            <summary>
+            Запуск выполнения очереди задач
+            </summary>
+            <param name="msg">Сообщение с данными для первой задачи планировщика</param>
+            <returns>Сообщение с данными от последнего элемента планировщика</returns>
+        </member>
+        <member name="M:Scheduler.SchedulerFactory.Validator(Scheduler.IMessage)">
+            <summary>
+            
+            </summary>
+            <param name="message">Сообщение, возвращаемое задачей планировщика</param>
+            <returns>Рузультаты обработки отрицательного результата без генирации ошибки (Validate = true)</returns>
+            <exception cref="T:System.Exception">Генерация ошибки при отрицательном результате</exception>
+        </member>
+        <member name="T:Scheduler.Process">
+            <summary>
+            Планировщик
+            </summary>
+        </member>
+        <member name="P:Scheduler.Process.Guid">
+            <summary>
+            Уникальный идентификатор
+            </summary>
+        </member>
+        <member name="P:Scheduler.Process.Subprocesses">
+            <summary>
+            Список задач
+            </summary>
+        </member>
+        <member name="T:Scheduler.Subprocess">
+            <summary>
+            Задача
+            </summary>
+        </member>
+        <member name="P:Scheduler.Subprocess.SubprocessName">
+            <summary>
+            Название задачи
+            </summary>
+        </member>
+        <member name="P:Scheduler.Subprocess.Operation">
+            <summary>
+            Задача
+            </summary>
+        </member>
+        <member name="T:Scheduler.STATUS">
+            <summary>
+            Статусы процесса
+            </summary>
+        </member>
+    </members>
+</doc>
