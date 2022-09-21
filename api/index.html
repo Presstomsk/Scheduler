@@ -90,23 +90,26 @@
 				  <p>......</p>	
                   <p>var msg = new SchedulerFactory(logger).Create().Do(scheduler1.Start).Do(scheduler2.Start).Do(scheduler3.Start).Start(Some_IMessage);</p><br>
 
-                  <h4> Формирование положительного сообщения</h4><br>
+                  <h4> Передача данных из задачи в планировщик</h4><br>
 
-                  <p>public class Message : IMessage</p><br>
-                  <p>public class Data</p><br>
+<p>public class Message : IMessage</p><br>
+<p>public class Data</p><br>
 
-                  <p>Data data = new Data{.....};</p>
-                  <p>IMessage msg = new Message(data, data.GetType());</p><br>
+<p>Data data = new Data{.....};</p>
+<p>IMessage msg = new Message().SendData<Data>(data);</p><br>
 
-                  <h4> Формирование отрицательного сообщения с генерацией исключения в коде</h4><br>
+<h4> Формирование сообщения об ошибке в планировщих с генерацией исключения</h4><br>
 
-                  <p>public class Message : IMessage</p><br>
-                  <p>IMessage msg = new Message(null, null, false, new Exception("error"));</p><br>
+<p>public class Message : IMessage</p><br>
+<p>IMessage msg = new Message().SendError(MsgType.Error, new Exception(error.ErrorMessage));</p><br>
 
-                  <h4> Формирование отрицательного сообщения без генерации исключения в коде</h4><br>
+<h4> Формирование сообщения об ошибке в планировщих без генерации исключения</h4><br>
 
-                  <p>public class Message : IMessage</p><br>
-                  <p>IMessage msg = new Message(null, null, false, new Exception("error"), true);</p><br><br>
+<p>public class Message : IMessage</p><br>
+<p>IMessage msg = new Message().SendError(MsgType.LogError, new Exception(error.ErrorMessage));</p><br><br>
+
+<h4> Получение данных из планировщика</h4>
+<p>Data data = msg.GetData<Data>();</p><br><br>
               </article>
           </div>
           
