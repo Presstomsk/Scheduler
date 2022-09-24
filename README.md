@@ -25,7 +25,7 @@
 <p>......</p>	
 <p>var msg = new SchedulerFactory(logger).Create().Do(scheduler1.Start).Do(scheduler2.Start).Do(scheduler3.Start).Start(Some_IMessage);</p><br>
 
-####Передача данных из задачи в планировщик
+#### Передача данных из задачи в планировщик
 
 public class Message : IMessage
 
@@ -35,20 +35,20 @@ Data data = new Data{.....};
 
 IMessage msg = new Message().SendData(data);
 
-####Формирование сообщения об ошибке в планировщих с генерацией исключения
+#### Формирование сообщения об ошибке в планировщих с генерацией исключения
 
 public class Message : IMessage
 
 IMessage msg = new Message().SendError(MsgType.Error, new Exception(error.ErrorMessage));
 
-####Формирование сообщения об ошибке в планировщих без генерации исключения
+#### Формирование сообщения об ошибке в планировщих без генерации исключения
 
 public class Message : IMessage
 
 IMessage msg = new Message().SendError(MsgType.LogError, new Exception(error.ErrorMessage));
 
 
-####Получение данных из планировщика
+#### Получение данных из планировщика
 
 Data data = msg.GetData();
 
