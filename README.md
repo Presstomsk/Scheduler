@@ -25,23 +25,32 @@
 <p>......</p>	
 <p>var msg = new SchedulerFactory(logger).Create().Do(scheduler1.Start).Do(scheduler2.Start).Do(scheduler3.Start).Start(Some_IMessage);</p><br>
 
-#### Формирование положительного сообщения<br><br>
+####Передача данных из задачи в планировщик
 
-<p>public class Message : IMessage</p><br>
-<p>public class Data</p><br>
+public class Message : IMessage
 
-<p>Data data = new Data{.....};</p>
-<p>IMessage msg = new Message(data, data.GetType());</p><br>
+public class Data
 
-#### Формирование отрицательного сообщения с генерацией исключения в коде<br><br>
+Data data = new Data{.....};
 
-<p>public class Message : IMessage</p><br>
-<p>IMessage msg = new Message(null, null, false, new Exception("error"));</p><br>
+IMessage msg = new Message().SendData(data);
 
-#### Формирование отрицательного сообщения без генерации исключения в коде<br><br>
+####Формирование сообщения об ошибке в планировщих с генерацией исключения
 
-<p>public class Message : IMessage</p><br>
-<p>IMessage msg = new Message(null, null, false, new Exception("error"), true);</p><br><br>
+public class Message : IMessage
+
+IMessage msg = new Message().SendError(MsgType.Error, new Exception(error.ErrorMessage));
+
+####Формирование сообщения об ошибке в планировщих без генерации исключения
+
+public class Message : IMessage
+
+IMessage msg = new Message().SendError(MsgType.LogError, new Exception(error.ErrorMessage));
+
+
+####Получение данных из планировщика
+
+Data data = msg.GetData();
 
 ## ЛОГИРОВАНИЕ ВНУТРИ ПЛАНИРОВЩИКА:<br><br>
 
